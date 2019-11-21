@@ -1,0 +1,20 @@
+.header-image {
+    background-image: url(./assets/D5595x0W4AExOJi.jpg);
+    height: 800px;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+section {
+    padding-top: 10px
+}
+
+h3 {
+    padding-top: 30px
+}
+
+footer {
+    height: 50px;
+    background-color: #343a40;
+    margin-top: 40px;
+}
