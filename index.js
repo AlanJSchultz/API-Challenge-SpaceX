@@ -2,7 +2,7 @@
 
 // const baseUrl = 'https://api.spacexdata.com/v3/history';
 // const baseUrl = 'https://api.spacexdata.com/v3/history?filter=title,event_date_utc,details,links/article';
-const baseUrl = 'https://api.spacexdata.com/v3/launches/past?filter=flight_number,mission_name,launch_date_local,rocket/rocket_name,links/article_link,details';
+const baseUrl = 'https://api.spacexdata.com/v3/launches/past?filter=flight_number,mission_name,launch_date_local,rocket/rocket_name,links/article_link,details,links/mission_patch';
 
 
 const sectionNews = document.getElementById("news");
@@ -13,7 +13,8 @@ function grabData() {
         .then(json => {
             console.log(json);
 
-            for (let i = 0; i < json.length; i++) {
+            // for (let i = 0; i < json.length; i++) {
+            for (let i = json.length - 1; i >= 0; i = i - 1) {
                 let flightNum = json[i].flight_number;
                 let rocketName = json[i].rocket.rocket_name;
                 let missionName = json[i].mission_name;
@@ -23,21 +24,38 @@ function grabData() {
                 let details = json[i].details;
                 // let article = json[i].links.article;
                 let article = json[i].links.article_link;
+                let patchImage = json[i].links.mission_patch;
+
                 console.log(flightDate, details);
 
                 let header = document.createElement("h3");
                 let para = document.createElement("p");
                 let link = document.createElement("a");
+                let image = document.createElement("img");
+                let container = document.createElement("div");
+                let column = document.createElement("div");
+                let column2 = document.createElement("div");
+                let row = document.createElement("div");
 
                 // header.innerHTML = title;
-                header.innerHTML = "Flight " + flightNum + ", " + rocketName + ", Mission Name: " + missionName;
-                para.innerHTML = flightDate + ": " + details;
+                header.innerHTML = "Flight " + flightNum + ", " + rocketName + " Rocket" + ", Mission Name: " + missionName;
+                image.setAttribute("src", patchImage);
+                image.setAttribute("style", "width:200px");
+                para.innerHTML = "Date Launched: " + flightDate + ". Details: " + details;
                 link.innerHTML = "Click here for News Article";
                 link.setAttribute("href", article);
                 link.setAttribute("target", "blank");
+                container.setAttribute("class", "container");
+                column.setAttribute("class", "col-md-6");
+                column2.setAttribute("class", "col-md-6");
+                row.setAttribute("class", "row");
+                column.innerHTML = image.innerHTML;
+                column2.innerHTML = para.innerHTML;
+                container.innerHTML = header.innerHTML + row.innerHTML + column.innerHTML + column2.innerHTML;
 
-                sectionNews.appendChild(header);
-                sectionNews.append(para);
+                sectionNews.appendChild(container);
+                // sectionNews.append(image);
+                // sectionNews.append(para);
                 sectionNews.append(link);
             }
         });
