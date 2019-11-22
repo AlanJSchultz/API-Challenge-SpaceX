@@ -1,7 +1,7 @@
 //jshint esversion:8
 
 const baseUrl =
-    "https://api.spacexdata.com/v3/launches/past?filter=flight_number,mission_name,launch_date_local,rocket/rocket_name,links/article_link,details,links/mission_patch";
+    "https://api.spacexdata.com/v3/launches/past?filter=flight_number,mission_name,launch_date_local,rocket/rocket_name,links,details";
 const sectionNews = document.getElementById("news");
 
 function grabData() {
