@@ -1,7 +1,8 @@
 .header-image {
     background-image: url(./assets/D5595x0W4AExOJi.jpg);
     height: 800px;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
